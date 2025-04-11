@@ -28,3 +28,7 @@ Microfunction to move files from S3 to SFTP using secrets
 5. Create destination location
 
 `mkdir -p ~/sftp-data/upload`
+
+6. Hit the endpoint via Postman
+
+POST `http://localhost:8080/move?bucket=test-bucket&key=sample.txt`
