@@ -5,9 +5,9 @@ Microfunction to move files from S3 to SFTP using secrets
 
 1. Get the Docker running for both AWS locakstack and SFTP-Server
 
-        docker run --rm -it -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack
+        docker run -d -p 4566:4566 -p 4510-4559:4510-4559 --name localstack localstack/localstack
         
-        docker run -d -p 2222:22 --name sftp-server -e SFTP_USERS="user:pass" atmoz/sftp
+        docker run -d -p 2222:22 -v ~/sftp-data:/home/user -e SFTP_USERS="user:pass" --name sftp-server atmoz/sftp
 
 2. Create a bucket on AWS local S3 and put a file
 
@@ -25,6 +25,8 @@ Microfunction to move files from S3 to SFTP using secrets
 
         sftp -P 2222 user@localhost
 
+        ssh-keygen -R "[localhost]:2222" //remove outdated entry if exists
+
 5. Create destination location
 
         mkdir -p ~/sftp-data/upload
@@ -37,7 +39,7 @@ Microfunction to move files from S3 to SFTP using secrets
 
 * from terminal --
 
-        sftp -P 2222 foo@localhost
+        sftp -P 2222 user@localhost
 
 * inside the SFTP session --
 
