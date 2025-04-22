@@ -1,4 +1,4 @@
-package com.example.filemover.service;
+package com.kubra.filemover.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

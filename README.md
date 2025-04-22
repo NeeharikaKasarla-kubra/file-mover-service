@@ -13,9 +13,9 @@ Microfunction to move files from S3 to SFTP using secrets
 
         awslocal s3 mb s3://test-bucket
         
-        echo "This is a sample text file." > sample.txt
+        mkfile 3g bigfile3.bin 
         
-        awslocal s3 cp sample.txt s3://test-bucket/sample.txt 
+        awslocal s3 cp bigfile3.bin s3://test-bucket/bigfile3.bin 
 
 3. AWS local SecretsManager to store SFTP-creds
 
@@ -35,7 +35,15 @@ Microfunction to move files from S3 to SFTP using secrets
 
         http://localhost:8080/move?bucket=test-bucket&key=sample.txt
 
-7. Validate the File moved successfully
+7. Or with CloudEvent json payload via Postman - POST
+
+        http://localhost:8080/move
+        {
+          "bucket": "test-bucket",
+          "key": "bigfile3.bin"
+        }
+
+8. Validate the File moved successfully
 
 * from terminal --
 
